@@ -2,14 +2,19 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <title>Experiment Redirect</title>
     <script>
-        const rand = Math.random();
-        if (rand < 0.5) {
-            window.location.href = "https://forms.gle/cBZzBe2JQpbo1WxJ8"; // Version 1
-        } else {
-            window.location.href = "https://forms.gle/gSb4T6HBn7bBgLyj9"; // Version 2
-        }
+        // 0.5초(500ms) 딜레이를 주어 카톡 봇이 먼저 빠져나가게끔
+        setTimeout(function() {
+            const rand = Math.random();
+            if (rand < 0.5) {
+                // href 대신 replace를 쓰면 뒤로가기 무한루프 방지에도 굿
+                window.location.replace("https://forms.gle/cBZzBe2JQpbo1WxJ8"); // Version 1
+            } else {
+                window.location.replace("https://forms.gle/gSb4T6HBn7bBgLyj9"); // Version 2
+            }
+        }, 500); 
     </script>
 </head>
 <body>
