@@ -5,16 +5,18 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <title>Experiment Redirect</title>
     <script>
-        // 0.5초(500ms) 딜레이를 주어 카톡 봇이 먼저 빠져나가게끔
-        setTimeout(function() {
+        // 1. 접속자가 카톡 등 미리보기 봇인지 확인하는 정규식
+        const isBot = /bot|kakaotalk-scrap|facebookexternalhit|twitterbot|slackbot|line/i.test(navigator.userAgent);
+
+        // 2. 봇이 아닌 '실제 사람'일 때만 즉시 실행
+        if (!isBot) {
             const rand = Math.random();
             if (rand < 0.5) {
-                // href 대신 replace를 쓰면 뒤로가기 무한루프 방지에도 굿
                 window.location.replace("https://forms.gle/cBZzBe2JQpbo1WxJ8"); // Version 1
             } else {
                 window.location.replace("https://forms.gle/gSb4T6HBn7bBgLyj9"); // Version 2
             }
-        }, 500); 
+        }
     </script>
 </head>
 <body>
